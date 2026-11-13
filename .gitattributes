@@ -1,0 +1,11 @@
+# text files are stored with LF line endings, whatever the checkout's platform
+* text=auto eol=lf
+
+# never touched by git's text handling
+*.gif binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.wav binary
+*.love binary
+*.wasm binary

@@ -1,0 +1,10 @@
+[
+  {
+    "adapter": "lua",
+    "label": "Debug LÖVE game",
+    "request": "launch",
+    "luaVersion": "luajit",
+    "runtimeExecutable": "lovec",
+    "runtimeArgs": ["${workspaceFolder}"]
+  }
+]

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "runtime.version": "LuaJIT",
+    "workspace.library": [
+      "${addons}/love2d/module/library",
+      "${3rd}/love2d/library"
+    ],
+    "workspace.checkThirdParty": true,
+    "runtime.special": {
+        "love.filesystem.load": "loadfile"
+    }
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Drakon join check</title>
+  <style>body { background: #1a1a1a; color: #ddd; font: 14px monospace; padding: 20px; }</style>
+</head>
+<body>
+  <!-- the web version joining a game hosted by the game itself, through drakonnet.js.
+       love . --run tools/hostcheck.lua, serve this folder over http, then open
+       joincheck.html?host=ws://127.0.0.1:5229&password=secret -->
+  <h3>Drakon join check</h3>
+  <pre id="out">running...</pre>
+  <script src="drakonnet.js"></script>
+  <script src="joincheck.js"></script>
+  <script>
+    (async function () {
+      var q = new URLSearchParams(location.search), lines = [];
+      var ok = await window.joinCheck(q.get("host") || "ws://127.0.0.1:5229", q.get("password") || "secret",
+        function (l) { lines.push(l); document.getElementById("out").textContent = lines.join("\n"); });
+      document.title = ok ? "PASS" : "FAIL";
+    })();
+  </script>
+</body>
+</html>
