@@ -277,9 +277,17 @@ local function loadSet(index)
     if isDeckView() then buildDeck() return end
     if isHelpView() then
         if not helpImage then
-            helpImage = love.graphics.newImage(HELP_IMAGE, { mipmaps = true })
-            helpImage:setFilter("linear", "linear")
-            helpImage:setMipmapFilter("linear")
+            --mipmaps keep it smooth when shrunk to the window, but WebGL 1 (the web version)
+            --only allows them on images whose sides are powers of two, which this isn't
+            local ok, img = false, nil
+            if not WSLINK.isWeb() then ok, img = pcall(love.graphics.newImage, HELP_IMAGE, { mipmaps = true }) end
+            if ok and img then
+                img:setMipmapFilter("linear")
+            else
+                img = love.graphics.newImage(HELP_IMAGE)
+            end
+            img:setFilter("linear", "linear")
+            helpImage = img
         end
         return
     end
